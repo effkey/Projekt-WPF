@@ -29,7 +29,6 @@ namespace Projekt_wpf.Windows
                 MessageBox.Show(signinviewModel.Response);
             }
         }
-
         private void ShowPassword_Checked(object sender, RoutedEventArgs e)
         {
             TxtBox.Text = passwordTextBox.Password;

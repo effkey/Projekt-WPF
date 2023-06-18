@@ -33,8 +33,7 @@ namespace ToDoList.Core
             var signInResponse = signInHandler.SendPostRequest(signInDataInJson, "register");
             Response = signInResponse;
             try
-            {
-
+            { 
                 var deserializedResponseData = JsonSerializer.Deserialize<SignInWindowViewModel>(signInResponse);
                 Console.WriteLine("Response: " + Response);
                 //SaveLogInSession(deserializedResponseData);

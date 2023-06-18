@@ -1,5 +1,11 @@
-﻿using Projekt_wpf.Windows;
+﻿using Projekt_wpf.Pages;
+using Projekt_wpf.Windows;
+using System.Text.Json;
+using System;
 using System.Windows;
+using System.IO;
+using ToDoList.Core.ViewModels.Windows;
+using ToDoList.Core;
 
 namespace Projekt_wpf
 {
@@ -8,17 +14,22 @@ namespace Projekt_wpf
     /// </summary>
     public partial class MainWindow : Window
     {
+        WorkTaskPage workTaskPage = new WorkTaskPage();
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new LogInWindowViewModel();
+            ChangePage();
         }
 
-        private void OpenWindowButton_Click(object sender, RoutedEventArgs e)
+        public void ChangePage()
         {
-            LogInWindow myWindow = new LogInWindow(); // Tworzenie instancji nowego okna
-            myWindow.Show(); // Otwarcie okna
-        }        
-        
-      
+            LogInWindowViewModel signinviewModel = (LogInWindowViewModel)DataContext;
+            signinviewModel.ReadLogInSession();
+            if (signinviewModel.IsLogInSuccess)
+            {
+                this.Content = workTaskPage;
+            }
+        } 
     }   
 }

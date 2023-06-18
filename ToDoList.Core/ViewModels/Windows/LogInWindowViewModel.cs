@@ -52,13 +52,29 @@ namespace ToDoList.Core.ViewModels.Windows
 
         public void SaveLogInSession(User deserializedResponseData)
         {
+            Console.WriteLine("zapisalem");
+            Console.WriteLine("Tutaj jest blad: " + deserializedResponseData.Username);
+            Console.WriteLine("Tutaj jest blad2: " + deserializedResponseData.Token);
             var session = new
             {
-                deserializedResponseData.Username,
-                deserializedResponseData.Token,
+                username = Username,
+                token = deserializedResponseData.Token,
             };
             string sessionInJsonFormat = JsonSerializer.Serialize(session);
-            File.WriteAllText("logInSession.json", sessionInJsonFormat);
+            File.WriteAllText("session.json", sessionInJsonFormat);
+        }
+
+        public void ReadLogInSession()
+        {
+            if (File.Exists("session.json"))
+            {
+                string sessionJson = File.ReadAllText("session.json");
+                //Console.WriteLine("session " + sessionJson);
+                var session = JsonSerializer.Deserialize<User>(sessionJson);
+            /*    Console.WriteLine("session " + session.Username);
+                Console.WriteLine("session " + session.Token);*/
+                IsLogInSuccess=true;
+            }
         }
     }
 }

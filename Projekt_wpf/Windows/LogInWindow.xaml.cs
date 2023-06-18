@@ -36,6 +36,7 @@ namespace Projekt_wpf.Windows
             {
                 this.Close();
                 MessageBox.Show("Successfully logged in.");
+
             }
             else
             {

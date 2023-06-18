@@ -30,7 +30,6 @@ namespace Projekt_wpf.Windows
 
         private void ShowMassageBoxAfterReset(object? sender, bool success)
         {
-
             ResetPasswordWindowViewModel resetviewModel = (ResetPasswordWindowViewModel)DataContext;
 
             if (resetviewModel.IsResetSuccess)
